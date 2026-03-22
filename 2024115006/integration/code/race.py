@@ -4,7 +4,7 @@ from inventory import car_exists
 races = []
 
 def create_race(race_name, driver_name, car_name):
-    if get_role(driver_name) != 'Driver':
+    if get_role(driver_name) != 'driver':
         return f"{driver_name} isn't a driver. Only drivers can race"
     
     if not car_exists(car_name):
@@ -41,5 +41,5 @@ def start_race(race_name):
 def get_all_races():
     return races
 
-def race_exits(race_name):
+def race_exists(race_name):
     return get_race(race_name) is not None

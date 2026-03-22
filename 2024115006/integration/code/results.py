@@ -15,12 +15,12 @@ def record_race(race_name, position, prize_money):
     
     driver_name = race["driver"]
 
-    results.append[{
+    results.append({
         "race": race_name,
         "driver": driver_name,
         "position": position,
         "prize": prize_money
-    }]
+    })
 
     race["status"] = "completed"
 
@@ -34,7 +34,7 @@ def record_race(race_name, position, prize_money):
 def get_results():
     return results
 
-def get_ranking():
+def get_rankings():
     return ranking
 
 def get_driver_ranking(driver_name):
