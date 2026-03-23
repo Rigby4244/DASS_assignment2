@@ -1,3 +1,4 @@
+"""Terminal UI helpers — banners, player cards, standings, and input utilities."""
 def print_banner(title):
     """Print a decorated section header."""
     width = 52
@@ -66,7 +67,7 @@ def safe_int_input(prompt, default=0):
     """
     try:
         return int(input(prompt))
-    except:
+    except (ValueError, EOFError):
         return default
 
 
