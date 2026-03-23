@@ -10,6 +10,12 @@ def record_race(race_name, position, prize_money):
     if not race:
         return "Race doesn't exist"
     
+    if position < 1:
+        return "Invalid position, position must be a positive integer."
+    
+    if prize_money < 0:
+        return "Invalid prize money, prize money must be a non-negative integer."
+    
     if race["status"] != "ongoing":
         return "Race isn't ongoing. Either didn't start or completed"
     
