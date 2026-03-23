@@ -1,6 +1,6 @@
 from registration import registration, members
 from race import create_race, start_race, races
-from results import record_race
+from results import record_race, results
 from inventory import add_car, get_cash, inventory
 
 import pytest
@@ -13,6 +13,7 @@ def reset():
     inventory["tools"] = []
     members.clear()
     races.clear()
+    results.clear()
 
 def test_record_race_results_with_valid_inputs():
     registration("Ahemad", "driver")
