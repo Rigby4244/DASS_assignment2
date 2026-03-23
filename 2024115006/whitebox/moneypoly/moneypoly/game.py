@@ -1,4 +1,4 @@
-import os
+"""Main game-loop controller and action handlers for MoneyPoly."""
 
 from moneypoly.config import (
     GO_TO_JAIL_POSITION,
@@ -17,7 +17,7 @@ from moneypoly.cards import CardDeck, CHANCE_CARDS, COMMUNITY_CHEST_CARDS
 from moneypoly import ui
 
 
-class Game:
+class Game:  # pylint: disable=too-many-instance-attributes
     """Manages the full state and flow of a MoneyPoly game session."""
 
     def __init__(self, player_names):
@@ -378,7 +378,7 @@ class Game:
 
         winner = self.find_winner()
         if winner:
-            ui.print_banner(f"GAME OVER")
+            ui.print_banner("GAME OVER")
             print(f"\n  {winner.name} wins with a net worth of ${winner.net_worth()}!\n")
         else:
             print("\n  The game ended with no players remaining.")
@@ -401,7 +401,7 @@ class Game:
 
             if choice == 0:
                 break
-            elif choice == 1:
+            if choice == 1:
                 ui.print_standings(self.players)
             elif choice == 2:
                 ui.print_board_ownership(self.board)
@@ -450,7 +450,7 @@ class Game:
         for i, p in enumerate(others):
             print(f"  {i + 1}. {p.name}  (${p.balance})")
         idx = ui.safe_int_input("  Trade with: ", default=0) - 1
-        if not (0 <= idx < len(others)):
+        if idx < 0 or idx >= len(others):    # was: if not (0 <= idx < len(others)):
             return
         partner = others[idx]
         if not player.properties:
@@ -459,7 +459,7 @@ class Game:
         for i, prop in enumerate(player.properties):
             print(f"  {i + 1}. {prop.name}")
         pidx = ui.safe_int_input("  Property to offer: ", default=0) - 1
-        if not (0 <= pidx < len(player.properties)):
+        if pidx < 0 or pidx >= len(player.properties):   # was: if not (0 <= pidx < ...)
             return
         chosen_prop = player.properties[pidx]
         cash = ui.safe_int_input(
