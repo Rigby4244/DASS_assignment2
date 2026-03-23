@@ -1,7 +1,7 @@
 from registration import registration, members
 from race import create_race, start_race, races
 from results import record_race
-from inventory import add_car, remove_car, inventory
+from inventory import add_car, get_cash, inventory
 
 import pytest
 
@@ -48,3 +48,12 @@ def test_record_race_with_invalid_prize_money():
     start_race("racetoglory")
     result = record_race("racetoglory", 1, -100)
     assert "Invalid prize money, prize money must be a non-negative integer" in result
+
+def test_record_race_and_if_cash_updated():
+    registration("Ahemad", "driver")
+    add_car("Ferari")
+    create_race("racetoglory", "Ahemad", "Ferari")
+    start_race("racetoglory")
+    record_race("racetoglory", 1, 800)
+    result = get_cash()
+    assert result == 1800
