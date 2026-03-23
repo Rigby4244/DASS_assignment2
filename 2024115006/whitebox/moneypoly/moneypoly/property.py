@@ -1,9 +1,14 @@
-class Property:
+"""Property and property-group classes for the MoneyPoly board game."""
+
+
+class Property:  # pylint: disable=too-many-instance-attributes
     """Represents a single purchasable property tile on the MoneyPoly board."""
 
     FULL_GROUP_MULTIPLIER = 2
 
-    def __init__(self, name, position, price, base_rent, group=None):
+    def __init__(  # pylint: disable=too-many-arguments,too-many-positional-arguments
+        self, name, position, price, base_rent, group=None
+    ):
         self.name = name
         self.position = position
         self.price = price
@@ -47,10 +52,9 @@ class Property:
         """
         if not self.is_mortgaged:
             return 0
-        else:
-            cost = int(self.mortgage_value * 1.1)
-            self.is_mortgaged = False
-            return cost
+        cost = int(self.mortgage_value * 1.1)   # removed unnecessary else
+        self.is_mortgaged = False
+        return cost
 
     def is_available(self):
         """Return True if this property can be purchased (unowned, not mortgaged)."""
@@ -62,6 +66,8 @@ class Property:
 
 
 class PropertyGroup:
+    """Groups related Property tiles by colour for rent-doubling logic."""
+
     def __init__(self, name, color):
         self.name = name
         self.color = color
