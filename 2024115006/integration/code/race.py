@@ -11,7 +11,7 @@ def create_race(race_name, driver_name, car_name):
         return f"{car_name} doesn't exist in inventory. Please choose a valid car."
     
     for race in races:
-        if races["name"] == race_name:
+        if race["name"] == race_name:
             return "Race already exists"
         
     race = {
@@ -25,7 +25,7 @@ def create_race(race_name, driver_name, car_name):
 
 def get_race(race_name):
     for race in races:
-        if races["name"] == race_name:
+        if race["name"] == race_name:
             return race
     return None
 
